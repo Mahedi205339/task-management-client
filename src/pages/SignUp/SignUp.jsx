@@ -1,18 +1,19 @@
 // import { LoadCanvasTemplate } from 'react-simple-captcha';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthProvider';
+import SocialLogin from '../../components/SocialLogin';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignUp = () => {
-    // const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
     const {
         register, handleSubmit, reset, formState: { errors },
     } = useForm()
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate();
-
     const onSubmit = (data) => {
         console.log(data.name, data.PhotoURL)
         createUser(data.email, data.password)
@@ -48,18 +49,18 @@ const SignUp = () => {
 
     return (
         <div className="sign-back hero min-h-screen ">
-            <Helmet>
+            {/* <Helmet>
                 <title>Boss Chef | SignUp</title>
                 <link rel="canonical" href="https://www.tacobell.com/" />
-            </Helmet>
-            <div className="hero-content flex flex-col md:flex-row">
-                <div className="text-center md:w-1/2 lg:text-left">
-                    <img src={logImg} alt="" />
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm lg:w-1/2">
+            </Helmet> */}
+            
+                {/* <div className="text-center md:w-1/2 lg:text-left">
+                    
+                </div> */}
+                <div className="card flex-shrink-0 w-96 md:w-[500px] ">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div>
-                            <h2 className='text-center text-2xl md:text-4xl lg:text5xl font-bold text-[#d1a054]'>SignUp Now</h2>
+                            <h2 className='text-center text-2xl md:text-4xl lg:text5xl font-bold text-cyan-600'>SignUp Now</h2>
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -116,15 +117,15 @@ const SignUp = () => {
 
 
                         <div className="form-control mt-6">
-                            <input className="w-full bg-[#d1a054] hover:bg-[#9c6535] py-2 rounded-lg text-white" type="submit" value="SignUp" />
+                            <input className="w-full bg-cyan-600 hover:bg-cyan-800 py-2 rounded-lg text-white" type="submit" value="SignUp" />
 
 
                         </div>
                     </form>
-                    <p className='text-center'><small className='text-[#d1a054]'>Already Have an account? <Link to="/login"><span className='font-bold'>Login</span></Link></small></p>
+                    <p className='text-center'><small className='text-cyan-600'>Already Have an account? <Link to="/login"><span className='font-bold'>Login</span></Link></small></p>
                     <SocialLogin></SocialLogin>
                 </div>
-            </div>
+            
         </div>
     );
 };
