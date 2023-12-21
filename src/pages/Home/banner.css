@@ -1,0 +1,7 @@
+.banner{
+    background-image: url(/src/assets/taskbanner.jpg);
+    background-repeat: no-repeat;
+    transform: scaleX(-1);
+    background-size: cover;
+    /* opacity: .8; */
+}
