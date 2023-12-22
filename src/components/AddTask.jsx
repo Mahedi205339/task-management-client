@@ -3,12 +3,14 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const AddTask = () => {
     const [startDate, setStartDate] = useState(new Date());
+    const axiosPublic = useAxiosPublic()
     const { user } = useAuth()
-    const handleSubmit = e => {
+    const handleSubmit =async (e) => {
         e.preventDefault()
         const form = e.target
         const date = form.date.value;
@@ -18,10 +20,15 @@ const AddTask = () => {
         // console.log(date,title , taskDescription , priority);
         const data = {
             title: title, date: date, email: user?.email, name: user?.displayName,
-            taskDescription: taskDescription, priority: priority
+            taskDescription: taskDescription, priority: priority , status: 'todo'
         }
         console.log(data);
-    }
+        const addTask = await axiosPublic.post('/tasks' , data)
+        
+            console.log(addTask.data);
+
+        }
+    
 
 
 
