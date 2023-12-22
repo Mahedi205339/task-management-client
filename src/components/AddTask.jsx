@@ -2,21 +2,29 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAuth from "../hooks/useAuth";
 
 
 const AddTask = () => {
     const [startDate, setStartDate] = useState(new Date());
-     const handleSubmit = e=>{
+    const { user } = useAuth()
+    const handleSubmit = e => {
         e.preventDefault()
         const form = e.target
-        const date = form.date.value ;
+        const date = form.date.value;
         const title = form.title.value;
         const taskDescription = form.taskDescription.value;
         const priority = form.priority.value;
-        console.log(date,title , taskDescription , priority);
+        // console.log(date,title , taskDescription , priority);
+        const data = {
+            title: title, date: date, email: user?.email, name: user?.displayName,
+            taskDescription: taskDescription, priority: priority
+        }
+        console.log(data);
     }
-    
-   
+
+
+
 
     return (
         <div className="max-w-2xl mx-auto p-5 bg-cyan-600 h-[calc(100vh-200px)]">
