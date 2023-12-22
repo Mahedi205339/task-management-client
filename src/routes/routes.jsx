@@ -6,6 +6,7 @@ import AddTask from "../components/AddTask";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
+import UpdateTask from "../pages/UpdateTask/UpdateTask";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
             {
                 path: 'signUp',
                 element:<SignUp/>
+            },
+            {
+                path: '/updateTask/:id',
+                element:<UpdateTask/>,
+                loader: ({params})=>fetch(`http://localhost:5000/tasks/ongoing/${params.id}`)
             }
         ]
 

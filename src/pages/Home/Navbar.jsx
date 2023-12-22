@@ -13,7 +13,7 @@ const Navbar = () => {
         <li> <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "bg-cyan-600 px-4 py-2 text-white rounded-lg" : ""
+                isPending ? "pending" : isActive ? "bg-cyan-600 px-2 py-1 text-white rounded-lg" : ""
             }
         >
             Home
@@ -21,7 +21,7 @@ const Navbar = () => {
         <li> <NavLink
             to="/dashboard"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "bg-cyan-600 px-4 py-2 text-white rounded-lg" : ""
+                isPending ? "pending" : isActive ? "bg-cyan-600 px-2 py-1 text-white rounded-lg" : ""
             }
         >
             Dashboard
@@ -30,7 +30,7 @@ const Navbar = () => {
         <li>
             {
                 user ? <>
-                <button className="px-4 py-2 text-white bg-red-600 hover:bg-red-800 cursor-pointer rounded-xl" onClick={logout}>Logout</button>
+                <button className="px-2 py-1 text-white bg-red-600 hover:bg-red-800 cursor-pointer rounded-xl" onClick={logout}>Logout</button>
                 </> :
                     <>
                         <NavLink
@@ -63,8 +63,8 @@ const Navbar = () => {
                 </div>
 
                 <img onClick={() => setShowMenu(!showMenu)} className=' w-10 block md:hidden' src={menu} alt="menu" />
-                <div style={{ display: showMenu ? 'flex' : 'none' }} className='absolute top-16 right-4 z-20 flex flex-col p-1 min-h-fit min-w-40'>
-                    <ul className="bg-sky-500 font-bold">
+                <div style={{ display: showMenu ? 'flex' : 'none' }} className='absolute top-16 right-4 z-20 flex flex-col gap-y-5 bg-white p-4 min-h-screen min-w-52'>
+                    <ul className="font-bold gap-y-2">
                         {navLink}
                     </ul>
 
