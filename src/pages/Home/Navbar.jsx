@@ -3,44 +3,49 @@ import menu from '../../assets/menu.png';
 import Container from "../../components/Container";
 import { FaUserClock } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 // import { NavLink } from "react-router-dom";
 const Navbar = () => {
+    const { user , logout } = useAuth()
+    console.log(user);
     const [showMenu, setShowMenu] = useState(false)
     const navLink = <>
-    <li> <NavLink
-        to="/"
-        className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-cyan-600 px-2 py-1 text-white rounded-lg" : ""
-        }
-    >
-        Home
-    </NavLink> </li>
-    <li> <NavLink
-        to="/dashboard"
-        className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-cyan-600 px-2 py-1 text-white rounded-lg" : ""
-        }
-    >
-        Dashboard
-    </NavLink> </li>
-    <li> <NavLink
-        to="/login"
-        className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-cyan-600 px-2 py-1 text-white rounded-lg" : ""
-        }
-    >
-        Login
-    </NavLink> </li>
-    {/* <li> <NavLink
-        to="/register"
-        className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-red-600" : ""
-        }
-    >
-        Registration
-    </NavLink> </li> */}
-</>
-      
+        <li> <NavLink
+            to="/"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "bg-cyan-600 px-4 py-2 text-white rounded-lg" : ""
+            }
+        >
+            Home
+        </NavLink> </li>
+        <li> <NavLink
+            to="/dashboard"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "bg-cyan-600 px-4 py-2 text-white rounded-lg" : ""
+            }
+        >
+            Dashboard
+        </NavLink> </li>
+
+        <li>
+            {
+                user ? <>
+                <button className="px-4 py-2 text-white bg-red-600 hover:bg-red-800 cursor-pointer rounded-xl" onClick={logout}>Logout</button>
+                </> :
+                    <>
+                        <NavLink
+                            to="/login"
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-cyan-600 px-4 py-2 text-white rounded-lg" : ""
+                            }
+                        >
+                            Login
+                        </NavLink>
+                    </>
+            }
+        </li>
+        </>
+
     return (
         <Container>
             <div className='bg-transparent h-[100px] flex z-10 sm:px-1 px-2 md:px-4  top-0 justify-between items-center'>
