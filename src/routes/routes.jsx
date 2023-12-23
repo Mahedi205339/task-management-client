@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import UpdateTask from "../pages/UpdateTask/UpdateTask";
+import About from "../pages/About/About";
 
 const router = createBrowserRouter([
     {
@@ -35,9 +36,13 @@ const router = createBrowserRouter([
                 element:<SignUp/>
             },
             {
+                path: 'about',
+                element:<About/>
+            },
+            {
                 path: '/updateTask/:id',
                 element:<UpdateTask/>,
-                loader: ({params})=>fetch(`http://localhost:5000/tasks/ongoing/${params.id}`)
+                loader: ({params})=>fetch(`https://task-manager-server-tan.vercel.app/tasks/ongoing/${params.id}`)
             }
         ]
 
